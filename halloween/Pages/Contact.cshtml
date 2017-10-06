@@ -10,17 +10,23 @@
             <div class="h-confirm">
                 <h2>@Model.Message</h2>
             </div>
-            <form action="/contact" method="post">
+            <form method="post">
+                @*<div asp-validation-summary="All" class="text-danger"></div>*@
                 <div class="row">
                     <div class="col-sm-6 form-group">
-                        <input class="form-control" name="name" placeholder="Name" type="text" maxlength="100" required>
-                    </div>
+                        <input asp-for="Contact.Name"   class="form-control" placeholder="Name" type="text" maxlength="100" required />
+                        <span asp-validation-for="Contact.Name" class="text-danger"></span>
+                      </div>
                     <div class="col-sm-6 form-group">
-                        <input class="form-control" name="email" placeholder="Email" maxlength="100" type="email" required>
+                        <input asp-for="Contact.Email" class="form-control" placeholder="Email" type="text" maxlength="100" required />
+                        <span asp-validation-for="Contact.Email" class="text-danger"></span>
                     </div>
                 </div>
-                <textarea class="form-control" name="subject" placeholder="Subject" rows="1" maxlength="250" required></textarea><br>
-                <textarea class="form-control" name="message" placeholder="Message" rows="5" maxlength="500" required></textarea><br>
+                <textarea asp-for="Contact.Subject" class="form-control" placeholder="Subject" rows="1" maxlength="250" required></textarea>
+                <span asp-validation-for="Contact.Subject" class="text-danger"></span><br />
+                
+                <textarea asp-for="Contact.Message" class="form-control" placeholder="Message" rows="5" maxlength="500" required></textarea>
+                <span asp-validation-for="Contact.Message" class="text-danger"></span><br />
                 <div class="row">
                     <div class="col-sm-12 form-group">
                         <button class="btn btn-default pull-right" type="submit">Send</button>
@@ -29,13 +35,16 @@
                 <div class="row">
                     <div class="col-sm-12 form-group">
                         <div class="g-recaptcha" data-sitekey="6Ld-fREUAAAAAKI-zYhPKiAzdyvYqbuRpnqEgn4T"></div>
-                        @Html.ValidationMessage("g-recaptcha")
+                        <span asp-validation-for="Contact.Recaptcha" class="text-danger"></span>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 
 <script src='https://www.google.com/recaptcha/api.js'></script>
 

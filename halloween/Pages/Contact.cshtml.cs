@@ -22,9 +22,13 @@ namespace halloween.Pages
             Message = "";
         }
 
-        public PageResult OnPost()
+        public IActionResult OnPost()
         {
-            var val = this.Contact.Name;
+            if (ModelState.IsValid)
+            {
+
+            }
+            //var val = this.Contact.Name;
             return Page();
         }
 
