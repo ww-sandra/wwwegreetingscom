@@ -1,0 +1,45 @@
+
+
+body {
+    background: url(/images/giphy.gif) no-repeat #000;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-size: 14px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+
+.h-confirm {
+    color: #fff;
+    text-align: center;
+    margin: 20px 0;
+}
+.h-confirm-error {
+    color: #d61616;
+    margin: 20px 0;
+}
+.h-form {
+    float: right;
+    margin: 50px 0 10px 10px;
+}
+
+.h-form-control-up {
+    text-transform: capitalize;
+}
+
+
+.text-danger {
+    color: #d61616;
+    font-weight: 300;
+}
+
+.has-error .form-control {
+    border: 2px solid #d61616;
+}

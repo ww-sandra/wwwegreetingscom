@@ -4,29 +4,37 @@
     ViewData["Title"] = "Contact page";
 
 }
-<div id="contact" class="container-fluid bg-grey">
+<link href="~/css/site_contact.css" rel="stylesheet" />
+
+<div id="contact" class="container-fluid">
     <div class="row">
         <div class="col-sm-7 h-form">
             <div class="h-confirm">
                 <h2>@Model.Message</h2>
             </div>
             <form method="post">
-                @*<div asp-validation-summary="All" class="text-danger"></div>*@
                 <div class="row">
                     <div class="col-sm-6 form-group">
-                        <input asp-for="Contact.Name"   class="form-control" placeholder="Name" type="text" maxlength="100" required />
+                        <input asp-for="Contact.Name" class="form-control h-form-control-up" placeholder="Name" type="text" maxlength="100" required />
                         <span asp-validation-for="Contact.Name" class="text-danger"></span>
-                      </div>
+                    </div>
                     <div class="col-sm-6 form-group">
                         <input asp-for="Contact.Email" class="form-control" placeholder="Email" type="text" maxlength="100" required />
                         <span asp-validation-for="Contact.Email" class="text-danger"></span>
                     </div>
                 </div>
-                <textarea asp-for="Contact.Subject" class="form-control" placeholder="Subject" rows="1" maxlength="250" required></textarea>
-                <span asp-validation-for="Contact.Subject" class="text-danger"></span><br />
-                
-                <textarea asp-for="Contact.Message" class="form-control" placeholder="Message" rows="5" maxlength="500" required></textarea>
-                <span asp-validation-for="Contact.Message" class="text-danger"></span><br />
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <textarea asp-for="Contact.Subject" class="form-control h-form-control-up" placeholder="Subject" rows="1" maxlength="250" required></textarea>
+                        <span asp-validation-for="Contact.Subject" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <textarea asp-for="Contact.Message" class="form-control" placeholder="Message" rows="5" maxlength="500" required></textarea>
+                        <span asp-validation-for="Contact.Message" class="text-danger"></span>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-sm-12 form-group">
                         <button class="btn btn-default pull-right" type="submit">Send</button>
@@ -43,8 +51,35 @@
     </div>
 </div>
 
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<script>
+     (function ($) {
+         var defaultOptions = {
+             validClass: 'has-success',
+             errorClass: 'has-error',
+             highlight: function (element, errorClass, validClass) {
+                 $(element).closest(".form-group")
+                     .removeClass(validClass)
+                     .addClass('has-error');
+             },
+             unhighlight: function (element, errorClass, validClass) {
+                 $(element).closest(".form-group")
+                     .removeClass('has-error')
+                     .addClass(validClass);
+             }
+         };
 
-<script src='https://www.google.com/recaptcha/api.js'></script>
+         $.validator.setDefaults(defaultOptions);
+
+         $.validator.unobtrusive.options = {
+             errorClass: defaultOptions.errorClass,
+             validClass: defaultOptions.validClass,
+         };
+     })(jQuery);
+</script>
+
+
 

@@ -5,11 +5,11 @@ namespace halloween.Models
     public class Contact
     {
         [Required(ErrorMessage = "Please fill in your name")]
-        [StringLength(100, MinimumLength = 3, ErrorMessage = "Name should be greater than 3 characters, and no more than 100 characters")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "Name should be at least 3 characters")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Email is required")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "This is not a valid email address!")]
+        [EmailAddress(ErrorMessage = "This is not a valid email address!")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "Email should be at least 3 characters")]
         public string Email { get; set; }
 
