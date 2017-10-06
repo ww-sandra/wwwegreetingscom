@@ -2,46 +2,40 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-   
+
 }
-
-
-
-<!-- Container (Contact Section) -->
-
     <div id="contact" class="container-fluid bg-grey">
-      
         <div class="row">
             <div class="col-sm-7 h-form">
-                <form action="/contact" method="post">
-                    <div class="row">
-                        <div class="col-sm-6 form-group">
-                            <input class="form-control" id="name" style="text-transform: capitalize" name="name" placeholder=" Name: First & Last" type="text" maxlength="70" required>
-                        </div>
-                        <div class="col-sm-6 form-group">
-                            <input class="form-control" id="email" name="email" placeholder=" Email" type="email" required>
-
-                        </div>
-                    </div>   
-                    <textarea class="form-control" id="subject" style="text-transform: capitalize" name="subject" placeholder=" Subject" rows="1" maxlength="123" required></textarea><br>
-                    <textarea class="form-control" id="comments" name="comments" placeholder=" Comment" rows="5" maxlength="630" required></textarea><br>
-                    <div class="row">
-                        <div class="col-sm-12 form-group">
-                            <button class="btn btn-default pull-right" type="submit">Send</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 form-group">
-                            <div class="g-recaptcha" data-sitekey="6Ld-fREUAAAAAKI-zYhPKiAzdyvYqbuRpnqEgn4T"></div>
-                            @Html.ValidationMessage("g-recaptcha")
-                        </div>
-                    </div>
-                </form>
+            <div class="h-confirm"> 
+                <h2>@Model.Message</h2>
             </div>
+            <form action="/" method="post">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" name="name" placeholder="Name" type="text" maxlength="100" required>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" name="email" placeholder="Email" maxlength="100" type="email" required>
+                    </div>
+                </div>
+                <textarea class="form-control" name="subject" placeholder="Subject" rows="1" maxlength="250" required></textarea><br>
+                <textarea class="form-control" name="message" placeholder="Message" rows="5" maxlength="500" required></textarea><br>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <button class="btn btn-default pull-right" type="submit">Send</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <div class="g-recaptcha" data-sitekey="6Ld-fREUAAAAAKI-zYhPKiAzdyvYqbuRpnqEgn4T"></div>
+                        @Html.ValidationMessage("g-recaptcha")
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
-
-
-<script src='https://www.google.com/recaptcha/api.js'></script>

@@ -1,19 +1,41 @@
 ﻿@page
 @model ContactModel
 @{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Contact page";
+
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@Model.Message</h3>
+<div id="contact" class="container-fluid bg-grey">
+    <div class="row">
+        <div class="col-sm-7 h-form">
+            <div class="h-confirm">
+                <h2>@Model.Message</h2>
+            </div>
+            <form action="/contact" method="post">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" name="name" placeholder="Name" type="text" maxlength="100" required>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" name="email" placeholder="Email" maxlength="100" type="email" required>
+                    </div>
+                </div>
+                <textarea class="form-control" name="subject" placeholder="Subject" rows="1" maxlength="250" required></textarea><br>
+                <textarea class="form-control" name="message" placeholder="Message" rows="5" maxlength="500" required></textarea><br>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <button class="btn btn-default pull-right" type="submit">Send</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <div class="g-recaptcha" data-sitekey="6Ld-fREUAAAAAKI-zYhPKiAzdyvYqbuRpnqEgn4T"></div>
+                        @Html.ValidationMessage("g-recaptcha")
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
