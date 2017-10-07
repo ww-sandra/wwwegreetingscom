@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace halloween.Pages
@@ -22,13 +24,47 @@ namespace halloween.Pages
             Message = "";
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
-            if (ModelState.IsValid)
+            if (await isValid())
             {
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        //SEND MESSAGE
+                        MailMessage message = new MailMessage();
+                        message.Subject = "[Wonder Women Coders] " + Contact.Subject;
+                        message.To.Add(new MailAddress(Contact.Email, Contact.Name));
+                        message.From = new MailAddress("sender170802@mail02.wonderwomencoders.com", "Wonder Women Coders");
+                        message.IsBodyHtml = true;
 
+                        message.Body = Contact.Message;
+                        using (var client = new SmtpClient())
+                        {
+                            client.Host = "mail02.wonderwomencoders.com";
+                            client.Port = 25;
+                            var credentials = new NetworkCredential("sender170802@mail02.wonderwomencoders.com", "Got2code!");
+                            client.UseDefaultCredentials = false;
+                            client.Credentials = credentials;
+                            client.Send(message);
+
+                        }
+
+                        return RedirectToPage("Preview");
+
+                    }
+                    catch { }
+
+                }
+
+            } else
+            {
+                 ModelState.AddModelError("Recaptcha", "Really?!  You're not a robot?  Really??");
             }
-            //var val = this.Contact.Name;
+
+            Message = "Error sending your message :(";
+
             return Page();
         }
 
