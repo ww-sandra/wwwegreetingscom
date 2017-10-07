@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using halloween.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace halloween
 {
@@ -14,6 +17,7 @@ namespace halloween
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -22,6 +26,8 @@ namespace halloween
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<DataContext>(options =>
+               options.UseSqlite(Configuration["DBConnection"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +51,24 @@ namespace halloween
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
+            
+
+            //Make sure the db is created!!
+            using (var serviceScope = app
+              .ApplicationServices
+              .GetRequiredService<IServiceScopeFactory>()
+              .CreateScope())
+            {
+              
+               serviceScope
+                   .ServiceProvider
+                   .GetService<DataContext>()
+                   .Database
+                   .EnsureCreated();
+            }
+
+
+
         }
     }
 }

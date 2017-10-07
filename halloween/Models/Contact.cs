@@ -1,9 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace halloween.Models
 {
     public class Contact
     {
+        [Key]
+        public int ID { get; set; }
+
         [Required(ErrorMessage = "Please fill in your name")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "Name should be at least 3 characters")]
         public string Name { get; set; }
@@ -21,6 +25,9 @@ namespace halloween.Models
         [StringLength(600, MinimumLength = 3, ErrorMessage = "Message should be at least 3 characters")]
         public string Message { get; set; }
 
+
+
+        [NotMapped]
         public string Recaptcha { get; set; }
 
     }
