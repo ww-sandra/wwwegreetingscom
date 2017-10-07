@@ -11,7 +11,7 @@ namespace halloween.Models
         public DataContext(DbContextOptions<DataContext> options):
             base(options){ }
 
-        DbSet<Contact> Contact { get; set; }
+        public DbSet<Contact> Contact { get; set; }
 
   
     }

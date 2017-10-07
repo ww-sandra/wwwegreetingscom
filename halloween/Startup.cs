@@ -26,6 +26,7 @@ namespace halloween
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+         
             services.AddDbContext<DataContext>(options =>
                options.UseSqlite(Configuration["DBConnection"]));
         }
@@ -45,13 +46,6 @@ namespace halloween
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
-            });
-            
 
             //Make sure the db is created!!
             using (var serviceScope = app
@@ -59,14 +53,23 @@ namespace halloween
               .GetRequiredService<IServiceScopeFactory>()
               .CreateScope())
             {
-              
-               serviceScope
-                   .ServiceProvider
-                   .GetService<DataContext>()
-                   .Database
-                   .EnsureCreated();
+
+                serviceScope
+                    .ServiceProvider
+                    .GetService<DataContext>()
+                    .Database
+                    .EnsureCreated();
             }
 
+
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action=Index}/{id?}");
+            });
+            
 
 
         }

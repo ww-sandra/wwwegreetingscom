@@ -14,6 +14,13 @@ namespace halloween.Pages
     public class ContactModel : PageModel
     {
         public string Message { get; set; }
+        private DataContext _context;
+
+        public ContactModel(DataContext context)
+        {
+            _context = context;
+
+        }
 
         [BindProperty]
         public Contact Contact { get; set; }
@@ -32,26 +39,12 @@ namespace halloween.Pages
                 {
                     try
                     {
-                        //SEND MESSAGE
-                        MailMessage message = new MailMessage();
-                        message.Subject = "[Wonder Women Coders] " + Contact.Subject;
-                        message.To.Add(new MailAddress(Contact.Email, Contact.Name));
-                        message.From = new MailAddress("sender170802@mail02.wonderwomencoders.com", "Wonder Women Coders");
-                        message.IsBodyHtml = true;
+                        //ADD TO DB
+                        _context.Contact.Add(Contact);
+                        _context.SaveChanges();
 
-                        message.Body = Contact.Message;
-                        using (var client = new SmtpClient())
-                        {
-                            client.Host = "mail02.wonderwomencoders.com";
-                            client.Port = 25;
-                            var credentials = new NetworkCredential("sender170802@mail02.wonderwomencoders.com", "Got2code!");
-                            client.UseDefaultCredentials = false;
-                            client.Credentials = credentials;
-                            client.Send(message);
 
-                        }
-
-                        return RedirectToPage("Preview");
+                        return RedirectToPage("Confirm", new { id = Contact.ID });
 
                     }
                     catch { }
@@ -60,7 +53,7 @@ namespace halloween.Pages
 
             } else
             {
-                 ModelState.AddModelError("Recaptcha", "Really?!  You're not a robot?  Really??");
+                 ModelState.AddModelError("Contact.Recaptcha", "Really?!  You're not a robot?  Really??");
             }
 
             Message = "Error sending your message :(";
