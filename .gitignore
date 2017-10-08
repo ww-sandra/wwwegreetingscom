@@ -261,4 +261,5 @@ __pycache__/
 *.pyc
 
 #IGNORE APPJSON
-appsettings.json
+**/appsettings.json
+**/appsettings.Development.json

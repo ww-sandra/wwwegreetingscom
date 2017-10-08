@@ -8,9 +8,14 @@
         <div class="row">
             <div class="col-sm-7 h-form">
             <div class="h-confirm"> 
-                <h2>@Model.Message</h2>
+                <h2>This is the messsage: @Model.Message</h2>
+                <h4>This is name: @Model.name</h4><br />
+                <h4>This is email: @Model.email</h4><br />
+                <h4>This is subject: @Model.subject</h4><br />
+                <h4>This is message: @Model.message</h4><br />
             </div>
-            <form action="/" method="post">
+               
+            <form method="post">
                 <div class="row">
                     <div class="col-sm-6 form-group">
                         <input class="form-control" name="name" placeholder="Name" type="text" maxlength="100" required>
@@ -19,8 +24,7 @@
                         <input class="form-control" name="email" placeholder="Email" maxlength="100" type="email" required>
                     </div>
                 </div>
-                <textarea class="form-control" name="subject" placeholder="Subject" rows="1" maxlength="250" required></textarea><br>
-                <textarea class="form-control" name="message" placeholder="Message" rows="5" maxlength="500" required></textarea><br>
+                @Html.Partial("_form")
                 <div class="row">
                     <div class="col-sm-12 form-group">
                         <button class="btn btn-default pull-right" type="submit">Send</button>
@@ -37,5 +41,7 @@
     </div>
 </div>
 
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 

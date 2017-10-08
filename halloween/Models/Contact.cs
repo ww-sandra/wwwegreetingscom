@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace halloween.Models
@@ -9,7 +10,7 @@ namespace halloween.Models
         public int ID { get; set; }
 
         [Required(ErrorMessage = "Please fill in your name")]
-        [StringLength(100, MinimumLength = 3, ErrorMessage = "Name should be at least 3 characters")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "Name should be at least 3 characters, and maximum of 100 characters")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Email is required")]
@@ -21,11 +22,12 @@ namespace halloween.Models
         [StringLength(250, MinimumLength = 3, ErrorMessage = "Subject should be at least 3 characters")]
         public string Subject { get; set; }
   
-        [Required(ErrorMessage = "Message is required")]
+        [Required(ErrorMessage = "Message is required, duummy")]
         [StringLength(600, MinimumLength = 3, ErrorMessage = "Message should be at least 3 characters")]
         public string Message { get; set; }
 
-
+        [NotMapped]
+        public DateTime Date { get; set; }
 
         [NotMapped]
         public string Recaptcha { get; set; }
