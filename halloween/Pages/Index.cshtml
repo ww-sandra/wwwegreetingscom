@@ -8,11 +8,8 @@
         <div class="row">
             <div class="col-sm-7 h-form">
             <div class="h-confirm"> 
-                <h2>This is the messsage: @Model.Message</h2>
-                <h4>This is name: @Model.name</h4><br />
-                <h4>This is email: @Model.email</h4><br />
-                <h4>This is subject: @Model.subject</h4><br />
-                <h4>This is message: @Model.message</h4><br />
+                <h2> @Model.Message</h2>
+               
             </div>
                
             <form method="post">
@@ -24,7 +21,19 @@
                         <input class="form-control" name="email" placeholder="Email" maxlength="100" type="email" required>
                     </div>
                 </div>
-                @Html.Partial("_form")
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <input class="form-control" name="subject" placeholder="Subject" rows="1" maxlength="250" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <textarea asp-for="message" class="form-control" name="message" placeholder="Message" rows="5" maxlength="500"></textarea><br>
+                        <span asp-validation-for="message" class="text-danger"></span>
+                    </div>
+                </div>
+               
                 <div class="row">
                     <div class="col-sm-12 form-group">
                         <button class="btn btn-default pull-right" type="submit">Send</button>

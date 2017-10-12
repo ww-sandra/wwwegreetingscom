@@ -18,8 +18,9 @@ namespace halloween.Pages
         public string subject { get; set; }
 
         [BindProperty]
-        [Required(ErrorMessage = "Hey dummy, that was rude!")]
         public string message { get; set; }
+
+
 
         public void OnGet()
         {
@@ -28,10 +29,7 @@ namespace halloween.Pages
 
         public void OnPost()
         {
-            if (string.IsNullOrEmpty(message))
-            {
-                //blah bla
-            }
+         
             
         }
 
