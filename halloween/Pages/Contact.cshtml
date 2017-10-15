@@ -15,22 +15,26 @@
             <form method="post">
                 <div class="row">
                     <div class="col-sm-6 form-group">
-                        <input asp-for="Contact.Name" class="form-control h-form-control-up" placeholder="Name" type="text" maxlength="100" required />
+                        <label asp-for="Contact.Name"></label>
+                        <input asp-for="Contact.Name" class="form-control" placeholder="Recipient's name" type="text" maxlength="100" required />
                         <span asp-validation-for="Contact.Name" class="text-danger"></span>
                     </div>
                     <div class="col-sm-6 form-group">
-                        <input asp-for="Contact.Email" class="form-control" placeholder="Email" type="text" maxlength="100" required />
+                        <label asp-for="Contact.Email"></label>
+                        <input asp-for="Contact.Email" class="form-control" placeholder="Recipient's email" type="text" maxlength="100" required />
                         <span asp-validation-for="Contact.Email" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 form-group">
+                        <label asp-for="Contact.Subject"></label>
                         <textarea asp-for="Contact.Subject" class="form-control h-form-control-up" placeholder="Subject" rows="1" maxlength="250" required></textarea>
                         <span asp-validation-for="Contact.Subject" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 form-group">
+                        <label asp-for="Contact.Message"></label>
                         <textarea asp-for="Contact.Message" class="form-control" placeholder="Message" rows="5" maxlength="500" required></textarea>
                         <span asp-validation-for="Contact.Message" class="text-danger"></span>
                     </div>
