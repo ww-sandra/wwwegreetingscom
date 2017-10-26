@@ -26,6 +26,10 @@ namespace halloween.Models
         [StringLength(600, MinimumLength = 3, ErrorMessage = "Message should be at least 3 characters")]
         public string Message { get; set; }
 
+        [RegularExpression("True", ErrorMessage = "You must accept the terms and conditions1")]
+        [Required(ErrorMessage = "You must accept the terms and conditions2")]
+        public bool Terms { get; set; }
+
         [NotMapped]
         public DateTime Date { get; set; }
 

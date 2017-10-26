@@ -23,7 +23,7 @@ namespace halloween.Pages
         }
 
         [BindProperty]
-        public Contact Contact { get; set; }
+        public Contact Contact { get; set; }  
 
 
         public void OnGet()
