@@ -26,9 +26,8 @@ namespace halloween.Models
         [StringLength(600, MinimumLength = 3, ErrorMessage = "Message should be at least 3 characters")]
         public string Message { get; set; }
 
-      
-      //  [Range(typeof(bool), "true", "true", ErrorMessage = "You gotta tick the box!")]
-        public bool Terms { get; set; }
+        [RegularExpression("/false/", ErrorMessage = "You must agree to terms to send!")]
+        public string Terms { get; set; }
 
         [NotMapped]
         public DateTime Date { get; set; }
