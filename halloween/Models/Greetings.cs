@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace halloween.Models
 {
-    public class Contact
+    public class Greetings
     {
         [Key]
         public int ID { get; set; }
@@ -26,7 +26,6 @@ namespace halloween.Models
         [StringLength(600, MinimumLength = 3, ErrorMessage = "Message should be at least 3 characters")]
         public string Message { get; set; }
 
-      
       //  [Range(typeof(bool), "true", "true", ErrorMessage = "You gotta tick the box!")]
         public bool Terms { get; set; }
 

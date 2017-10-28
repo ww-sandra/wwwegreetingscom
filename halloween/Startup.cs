@@ -27,8 +27,8 @@ namespace halloween
         {
             services.AddMvc();
          
-            services.AddDbContext<DataContext>(options =>
-               options.UseSqlite(Configuration["DBConnection"]));
+            services.AddDbContext<BridgeDbContext>(options =>
+               options.UseSqlite(Configuration["MyDb"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,7 +56,7 @@ namespace halloween
 
                 serviceScope
                     .ServiceProvider
-                    .GetService<DataContext>()
+                    .GetService<BridgeDbContext>()
                     .Database
                     .EnsureCreated();
             }

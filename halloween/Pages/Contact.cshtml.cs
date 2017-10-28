@@ -14,9 +14,9 @@ namespace halloween.Pages
     public class ContactModel : PageModel
     {
         public string Message { get; set; }
-        private DataContext _context;
+        private BridgeDbContext _context;
 
-        public ContactModel(DataContext context)
+        public ContactModel(BridgeDbContext context)
         {
             _context = context;
 

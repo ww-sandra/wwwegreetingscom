@@ -10,9 +10,9 @@ namespace halloween.Pages
 
         public Contact Contact { get; set; }
 
-        private DataContext _context;
+        private BridgeDbContext _context;
 
-        public ConfirmModel(DataContext context)
+        public ConfirmModel(BridgeDbContext context)
         {
             _context = context;
 
