@@ -26,9 +26,12 @@ namespace halloween.Pages
         public Contact Contact { get; set; }  
 
 
-        public void OnGet()
+        public void OnGet(int id = 0)
         {
-            Message = "";
+            if (id > 0)
+            {
+                Contact = _context.Contact.Find(id);
+            }
         }
 
         public async Task<IActionResult> OnPost()
@@ -39,10 +42,17 @@ namespace halloween.Pages
                 {
                     try
                     {
-                        //ADD TO DB
-                        _context.Contact.Add(Contact);
-                        _context.SaveChanges();
+                        if (Contact.ID <= 0)
+                        {   
+                            //ADD TO DB
+                            _context.Contact.Add(Contact);
+                        } else
+                        {
+                            //ADD TO DB
+                            _context.Contact.Update(Contact);
+                        }
 
+                        _context.SaveChanges();
 
                         return RedirectToPage("Confirm", new { id = Contact.ID });
 

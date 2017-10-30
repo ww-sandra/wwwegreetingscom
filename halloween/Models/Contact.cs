@@ -26,7 +26,7 @@ namespace halloween.Models
         [StringLength(600, MinimumLength = 3, ErrorMessage = "Message should be at least 3 characters")]
         public string Message { get; set; }
 
-        [RegularExpression("/false/", ErrorMessage = "You must agree to terms to send!")]
+       // [RegularExpression("/false/", ErrorMessage = "You must agree to terms to send!")]
         public string Terms { get; set; }
 
         [NotMapped]

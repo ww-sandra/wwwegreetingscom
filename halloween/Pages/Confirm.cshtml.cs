@@ -18,12 +18,19 @@ namespace halloween.Pages
 
         }
 
-        public void OnGet(int id=0)
+        public IActionResult OnGet(int id=0)
         {
             if(id > 0)
             {
                 Contact = _context.Contact.Find(id);
+            } else
+            {
+                return Redirect("/");
             }
+
+
+            return Page();
+          
             
         }
 

@@ -5,4 +5,52 @@
 
 }
 
-<div>This is the confirmation for @Model.Contact.Name</div>
+<div id="contact" class="container-fluid">
+    <div class="row">
+      
+        <div class="col-sm-7 h-form">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <label asp-for="Contact.Name"></label>
+                        @Model.Contact.Name
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label asp-for="Contact.Email"></label>
+                        @Model.Contact.Name
+                     
+                   </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label asp-for="Contact.Subject"></label>
+                        @Model.Contact.Subject
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label asp-for="Contact.Message"></label>
+                        @Model.Contact.Message
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <button onclick="location.href='http://localhost:65084/?id=@Model.Contact.ID'">Edit</button>
+                        <form method="post">
+                            <input type="hidden" asp-for="Contact.ID" />
+                            <button class="btn btn-default pull-right" type="submit">Send</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                      
+                    </div>
+                </div>
+           
+        </div>
+           
+    </div>
+</div>
+
+
+

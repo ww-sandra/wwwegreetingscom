@@ -41,7 +41,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 form-group">
-                        <input asp-for="Contact.Terms" type="checkbox" class="form-control"/> 
+                        <input asp-for="Contact.Terms" type="checkbox" class="form-control" required /> 
                          By checking on this box, I agree to this website's <a data-toggle="modal" data-target="#terms">Terms of Use</a>
                         <span asp-validation-for="Contact.Terms" class="text-danger"></span>
                     </div>
@@ -72,7 +72,7 @@
     {
        var recaptcha = $("#g-recaptcha-response");
         var val = recaptcha.val();
-        if (val === "") {
+        if (recaptcha.val() === "") {
             event.preventDefault();
             alert("Please check the recaptcha")
         }
