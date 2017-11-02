@@ -50,7 +50,10 @@ namespace halloween.Pages
                     message.To.Add(new MailAddress(Contact.Email, Contact.Name));
                     message.From = new MailAddress("sandra@westsidewebsites.com", "Sandra");
                     message.IsBodyHtml = true;
-
+                    var body = "<html>" +
+                        "<head><title>Scary Greeting</title></head>" +
+                        "<body>" +
+                        ""
                     message.Body = Contact.Message;
                     using (var client = new SmtpClient())
                     {
