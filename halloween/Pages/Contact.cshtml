@@ -72,7 +72,7 @@
     {
        var recaptcha = $("#g-recaptcha-response");
         var val = recaptcha.val();
-        if (recaptcha.val() === "") {
+        if (val === "") {
             event.preventDefault();
             alert("Please check the recaptcha")
         }

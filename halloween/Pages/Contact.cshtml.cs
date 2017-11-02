@@ -54,7 +54,7 @@ namespace halloween.Pages
 
                         _context.SaveChanges();
 
-                        return RedirectToPage("Confirm", new { id = Contact.ID });
+                        return RedirectToPage("Preview", new { id = Contact.ID });
 
                     }
                     catch { }

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -13,7 +12,6 @@ namespace halloween.Pages
     public class IndexModel : PageModel
     {
         public string Message { get; set; }
-        
         private BridgeDbContext _context;
 
         public IndexModel(BridgeDbContext context)
@@ -33,7 +31,6 @@ namespace halloween.Pages
                 Contact = _context.Contact.Find(id);
             }
         }
-
 
         public async Task<IActionResult> OnPost()
         {
@@ -56,7 +53,7 @@ namespace halloween.Pages
 
                         _context.SaveChanges();
 
-                        return RedirectToPage("Confirm", new { id = Contact.ID });
+                        return RedirectToPage("Preview", new { id = Contact.ID });
 
                     }
                     catch { }
@@ -112,6 +109,5 @@ namespace halloween.Pages
 
             return false;
         }
-
     }
 }

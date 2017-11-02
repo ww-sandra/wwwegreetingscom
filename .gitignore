@@ -263,3 +263,4 @@ __pycache__/
 #IGNORE APPJSON
 **/appsettings.json
 **/appsettings.Development.json
+*.db

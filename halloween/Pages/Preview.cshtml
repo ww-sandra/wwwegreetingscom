@@ -3,7 +3,72 @@
 @{
    
 }
+<link href="~/css/site_contact.css" rel="stylesheet" />
+<style>
+    .form-group {
+        color: #fff
+    }
+    label {
+        color: #eb3838
+    }
+    button {
+        color: #000
+    }
+</style>
+<div id="contact" class="container-fluid">
+    <div class="row">
+        <div class="h-confirm">
+            <h2>@Model.Message</h2>
+        </div>
+        <div class="col-sm-7 h-form">
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                    <label asp-for="Contact.Name"></label>
+                    <div>@Model.Contact.Name</div>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label asp-for="Contact.Email"></label>
+                    <div>
+                        @Model.Contact.Email
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <label asp-for="Contact.Subject"></label>
+                    <div>
+                        @Model.Contact.Subject
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <label asp-for="Contact.Message"></label>
+                    <div>
+                        @Model.Contact.Message
+                    </div>
+                  
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <button onclick="location.href='http://localhost:65084/?id=@Model.Contact.ID'">Edit</button>
+                    <form method="post">
+                        <input type="hidden" asp-for="Contact.ID" />
+                        <button class="btn btn-default pull-right" type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 form-group">
 
-<h3>@Model.Message</h3>
+                </div>
+            </div>
 
-<p>This is my preview page.</p>
+        </div>
+
+    </div>
+</div>
+
+
+

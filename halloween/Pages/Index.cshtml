@@ -1,17 +1,18 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Contact page";
 
 }
- <div id="contact" class="container-fluid">
+<link href="~/css/site_contact.css" rel="stylesheet" />
+
+<div id="contact" class="container-fluid">
     <div class="row">
         <div class="col-sm-7 h-form">
             <div class="h-confirm">
                 <h2>@Model.Message</h2>
             </div>
             <form method="post">
-                <input type="hidden" asp-for="Contact.ID" />
                 <div class="row">
                     <div class="col-sm-6 form-group">
                         <label asp-for="Contact.Name"></label>
@@ -70,10 +71,40 @@
     $("form").submit(function (event) {
         var recaptcha = $("#g-recaptcha-response");
         var val = recaptcha.val();
-        if (recaptcha.val() === "") {
+        if (val === "") {
             event.preventDefault();
             alert("Please check the recaptcha")
         }
 
     });
 </script>
+
+
+@*<script>
+         (function ($) {
+             var defaultOptions = {
+                 validClass: 'has-success',
+                 errorClass: 'has-error',
+                 highlight: function (element, errorClass, validClass) {
+                     $(element).closest(".form-group")
+                         .removeClass(validClass)
+                         .addClass('has-error');
+                 },
+                 unhighlight: function (element, errorClass, validClass) {
+                     $(element).closest(".form-group")
+                         .removeClass('has-error')
+                         .addClass(validClass);
+                 }
+             };
+
+             $.validator.setDefaults(defaultOptions);
+
+             $.validator.unobtrusive.options = {
+                 errorClass: defaultOptions.errorClass,
+                 validClass: defaultOptions.validClass,
+             };
+         })(jQuery);
+    </script>*@
+
+
+
