@@ -1,6 +1,7 @@
 ﻿using halloween.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Net;
 using System.Net.Mail;
 
@@ -50,24 +51,28 @@ namespace halloween.Pages
                     message.To.Add(new MailAddress(Contact.Email, Contact.Name));
                     message.From = new MailAddress("sandra@westsidewebsites.com", "Sandra");
                     message.IsBodyHtml = true;
-                    var body = "<html>" +
-                        "<head><title>Scary Greeting</title></head>" +
-                        "<body>" +
-                        ""
+                  
                     message.Body = Contact.Message;
                     using (var client = new SmtpClient())
                     {
-                        //client.Host = "smtp.wowoco.org";
+                        //client.EnableSsl = false;
+                        //client.Host = "smtp18.wowoco.org";
+                        //client.Port = 2525;
+                        //client.UseDefaultCredentials = false;
+                        //client.Send(message);
+
                         client.EnableSsl = true;
-                        client.Host = "smtp17.bamtools.com";
-                        client.Port = 2525;
-                        client.UseDefaultCredentials = false;
+                        client.UseDefaultCredentials = true;
+                        client.Credentials = new System.Net.NetworkCredential("sj90034@gmail.com", "s@nd2016");
+                        client.Host = "smtp.gmail.com";
+                        client.Port = 587;
                         client.Send(message);
+
 
                     }
 
                     return RedirectToPage("Confirm");
-                } catch {
+                } catch (Exception ex){
 
                     Message = "There was an error sending your message :(";
                 }
