@@ -19,4 +19,7 @@
     <Folder Include="db\" />
     <Folder Include="Services\" />
   </ItemGroup>
+<ItemGroup>
+  <None Include="mydb.db" CopyToOutputDirectory="Always" />
+  </ItemGroup>
 </Project>

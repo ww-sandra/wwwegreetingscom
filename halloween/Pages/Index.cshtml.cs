@@ -1,6 +1,7 @@
 ﻿using halloween.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,11 @@ namespace halloween.Pages
     {
         public string Message { get; set; }
         private BridgeDbContext _context;
+        private IConfiguration _configuration { get; set; }
 
-        public IndexModel(BridgeDbContext context)
+        public IndexModel(BridgeDbContext context, IConfiguration configuration)
         {
+            _configuration = configuration;
             _context = context;
 
         }
@@ -83,7 +86,7 @@ namespace halloween.Pages
                 using (var client = new HttpClient())
                 {
                     var values = new Dictionary<string, string>();
-                    values.Add("secret", "6Ld-fREUAAAAAKZBYEo0n60jMHb5i6NE-hkBn5BF");
+                    values.Add("secret", _configuration["ReCaptcha:PrivateKey"]);
                     values.Add("response", response);
 
                     var query = new FormUrlEncodedContent(values);

@@ -1,6 +1,7 @@
 ﻿using halloween.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Net;
 using System.Net.Mail;
@@ -14,10 +15,12 @@ namespace halloween.Pages
         public Contact Contact { get; set; }
 
         private BridgeDbContext _context;
+        private IConfiguration _configuration;
 
-        public PreviewModel(BridgeDbContext context)
+        public PreviewModel(BridgeDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
 
         }
 
@@ -29,7 +32,7 @@ namespace halloween.Pages
             }
             else
             {
-                return Redirect("/");
+                return Redirect("");
             }
 
 
@@ -51,27 +54,24 @@ namespace halloween.Pages
                     message.To.Add(new MailAddress(Contact.Email, Contact.Name));
                     message.From = new MailAddress("sandra@westsidewebsites.com", "Sandra");
                     message.IsBodyHtml = true;
-                  
-                    message.Body = Contact.Message;
+
+                    message.Body = "<img src='http://sandra.wowoco.org/images/thumbnail.jpg' />"
+                        + Contact.Name
+                        + " has a greeting for you! Visit http://sandra.wowoco.org/read/"
+                        + Contact.ID;
+                      
+
                     using (var client = new SmtpClient())
                     {
-                        //client.EnableSsl = false;
-                        //client.Host = "smtp18.wowoco.org";
-                        //client.Port = 2525;
-                        //client.UseDefaultCredentials = false;
-                        //client.Send(message);
-
-                        client.EnableSsl = true;
-                        client.UseDefaultCredentials = true;
-                        client.Credentials = new System.Net.NetworkCredential("sj90034@gmail.com", "s@nd2016");
-                        client.Host = "smtp.gmail.com";
-                        client.Port = 587;
+                        client.EnableSsl = false;
+                        client.Host = "smtp18.wowoco.org";
+                        client.Port = 2525;
+                        client.UseDefaultCredentials = false;
                         client.Send(message);
-
-
                     }
 
                     return RedirectToPage("Confirm");
+
                 } catch (Exception ex){
 
                     Message = "There was an error sending your message :(";
