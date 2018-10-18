@@ -260,7 +260,7 @@ paket-files/
 __pycache__/
 *.pyc
 
-#IGNORE APPJSON
+#IGNORE APPSETTINGJSON
 **/appsettings.json
 **/appsettings.Development.json
 *.db

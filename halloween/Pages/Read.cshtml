@@ -1,0 +1,44 @@
+﻿@page "{id?}"
+@model ReadModel
+@{
+   
+}
+<link href="~/css/site_contact.css" rel="stylesheet" />
+<style>
+    .form-group {
+        color: #fff
+    }
+    label {
+        color: #eb3838
+    }
+    button {
+        color: #000
+    }
+    h1 {
+        color:red
+    }
+</style>
+<div id="contact" class="container-fluid">
+    <div class="row">
+        <div class="h-confirm">
+            <h2>A Spooky Greeting for @Model.Contact.Name!!</h2>
+        </div>
+        <div class="col-sm-7 h-form">
+            
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <div>
+                        <h1>@Model.Contact.Message</h1>
+                    </div>
+                  
+                </div>
+            </div>
+         
+
+        </div>
+
+    </div>
+</div>
+
+
+
